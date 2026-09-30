@@ -19,12 +19,13 @@ int get_ls_count() {
 
 	// open for reading
 	FILE *fp = fopen(LS_COUNT_DIR, "r");
-	if(!fp) {
-		perror("fopen");
-		return -1;
+	if(fp) {
+		fscanf(fp, "%d", &ls_count);
+		fscanf(fp, "%s", lsd);
+	} else {
+		lsd[0] = '\0';
+		ls_count = 0;
 	}
-	fscanf(fp, "%d", &ls_count);
-	fscanf(fp, "%s", lsd);
 
 	fclose(fp);
 

@@ -53,17 +53,3 @@ int get_ls_count() {
 	fclose(fp);
 	return ls_count;
 }
-
-void reset_ls_count() {
-	char cwd[CWD_LEN];
-	if(!getcwd(cwd, CWD_LEN)) {
-		perror("getcwd");
-		return;
-	}
-
-	FILE *fp = fopen(LS_COUNT_DIR, "r+");
-	if(!fp) return;
-	fprintf(fp, "0\n");
-	fprintf(fp, "%s\n", cwd);
-	fclose(fp);
-}
